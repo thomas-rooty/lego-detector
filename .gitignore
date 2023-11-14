@@ -1,5 +1,6 @@
 .idea
 venv
 
-# ignore every files into output
+# ignore every files into output and uploads
 output/*
+uploadst/*
