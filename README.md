@@ -1,5 +1,8 @@
-![img.png](img.png)
-# Lego Detector API
+<p align="center">
+    <img src="https://www.shareicon.net/data/256x256/2015/12/13/205320_designer_300x300.png">
+</p>
+
+<h1 align="center">Lego Detector API</h1>
 
 ## Introduction
 Welcome to the Lego Detector API! This API is built using Flask, TensorFlow, and OpenCV to identify Lego bricks in a photograph and guess their types. It serves as a powerful tool for Lego enthusiasts and builders, offering a way to digitally catalog and recognize Lego pieces from images.
