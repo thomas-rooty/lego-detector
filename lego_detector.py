@@ -118,7 +118,7 @@ def process_image(user_image_path):
       "id": i,
       "position": {"x": x, "y": y},
       "size": {"width": w, "height": h},
-      "image_path": f"http://brick-ai.eu-4.evennode.com/output/{unique_filename}"
+      "image_path": f"http://172.20.10.14:5000/output/{unique_filename}"
     }
     bricks_data.append(brick_info)
     cv2.rectangle(img_withrectangle, (x, y), (x + w, y + h), (0, 255, 0), 2)
