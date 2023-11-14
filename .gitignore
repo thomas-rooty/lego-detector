@@ -1,2 +1,5 @@
 .idea
 venv
+
+# ignore every files into output
+output/*
