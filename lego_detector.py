@@ -18,7 +18,10 @@ def average_dark_color(image):
 
 def process_image(user_image_path):
   img_example = cv2.imread(user_image_path)
-  img_bg = cv2.imread('input/background_backlit_B.jpg')
+  img_bg = cv2.imread('input/background_backlit_B.jpg') # Size = 3024 x 4032
+
+  # Adjust img_bg to the same size as img_example
+  img_bg = cv2.resize(img_bg, (img_example.shape[1], img_example.shape[0]), interpolation=cv2.INTER_AREA)
 
   # Convert to grayscale
   img_bg_gray = cv2.cvtColor(img_bg, cv2.COLOR_BGR2GRAY)
