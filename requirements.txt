@@ -2,4 +2,3 @@ matplotlib
 opencv-python
 numpy
 Flask
-werkzeug

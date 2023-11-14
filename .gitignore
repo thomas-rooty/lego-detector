@@ -3,4 +3,4 @@ venv
 
 # ignore every files into output and uploads
 output/*
-uploadst/*
+uploads/*
