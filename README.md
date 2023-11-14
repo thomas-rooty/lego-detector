@@ -1,50 +1,78 @@
 ![img.png](img.png)
-# Lego Detector
+# Lego Detector API
 
 ## Introduction
-Welcome to the Lego Detector project!
-
-This repository hosts a Jupyter notebook that utilizes OpenCV to identify and create bounding boxes around Lego bricks in a photograph. The primary goal of this project is to isolate each Lego brick in an image, enabling further analysis by another AI system. 
-
-This analysis could potentially suggest Lego models that users can build with their available set of bricks, simply by taking a photo of their collection.
+Welcome to the Lego Detector API! This API is built using Flask, TensorFlow, and OpenCV to identify Lego bricks in a photograph and guess their types. It serves as a powerful tool for Lego enthusiasts and builders, offering a way to digitally catalog and recognize Lego pieces from images.
 
 ## Project Structure
-
-Lego_Detector.ipynb: The main Jupyter notebook containing the image processing and Lego detection algorithm.
+- `app.py`: The Flask application server.
+- `lego_detector.py`: Module for detecting Lego bricks in images using OpenCV.
+- `lego_guesser.py`: Module for predicting the type of Lego bricks using TensorFlow.
+- `model/lego_predicter.h5`: Pre-trained TensorFlow model for Lego brick classification.
+- `requirements.txt`: List of Python dependencies.
 
 ## Getting Started
 
 ### Prerequisites
-- Python 3
-- Jupyter Notebook
-- OpenCV-Python
+- Python 3.x
+- Flask
+- TensorFlow
+- OpenCV
+- Other dependencies as listed in the `requirements.txt` file.
 
-Other dependencies as listed in the requirements.txt file.
-
-## Installation
+### Installation
 Clone the repository:
 ```bash
 git clone https://github.com/thomas-rooty/lego-detector.git
 ```
 
 Install the required Python packages:
+
 ```bash
 pip install -r requirements.txt
 ```
 
+### Running the API
+Start the Flask server:
+
+```bash
+python app.py
+```
+
+The server will start on http://127.0.0.1:5000/.
+
 ## Usage
-To use the Lego Detector:
+### Detecting Lego Bricks
 
-1. Open the Lego_Detector.ipynb notebook in Jupyter Notebook.
-2. Run the cells in order to process an image with Lego bricks.
+Send a POST request to /detect_legos with an image file. The API processes the image and returns bounding boxes around each detected Lego brick.
 
-The notebook will display the processed image with bounding boxes around each detected Lego brick and generate JPG files for each found brick.
+Example with curl:
 
-## Contributing
-Contributions to the Lego Detector are welcome! Whether it's reporting a bug, proposing a feature, or submitting a pull request, all contributions are appreciated.
+```bash
+curl -X POST -F "file=@path_to_your_image.jpg" http://127.0.0.1:5000/detect_legos
+```
 
-## License
-This project is licensed under the MIT License.
+### Guessing Lego Types
 
-## Contact
-For any queries or discussions about the project, feel free to contact me here on GitHub.
+Send a POST request to /guess_lego with a list of URLs of cropped Lego brick images. The API uses a pre-trained model to predict the type of each Lego brick.
+
+Example with curl:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"urls": ["http://image_url1.jpg", "http://image_url2.jpg"]}' http://127.0.0.1:5000/guess_lego
+```
+
+### Retrieving Processed Images
+Access processed images by navigating to /output/<filename>.
+
+## API Endpoints
+- GET /: Returns information about the API.
+- POST /detect_legos: Accepts an image file and returns detected Lego bricks.
+- POST /guess_lego: Accepts URLs of Lego brick images and returns their guessed types.
+- GET /output/<filename>: Retrieves a processed image.
+ 
+### Contributing
+We welcome contributions to improve the Lego Detector API! Whether it's bug fixes, feature enhancements, or documentation improvements, your help is valuable.
+
+### License
+This project is licensed under the MIT License - see the LICENSE file for details.
