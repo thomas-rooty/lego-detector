@@ -32,10 +32,6 @@ def process_image(user_image_path):
   # Dimensions de l'image
   height, width, channels = img_example.shape
 
-  # Variable shortening
-  w = width
-  h = height
-
   validcontours = []
   contour_index = -1
 
