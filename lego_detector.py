@@ -17,7 +17,7 @@ def process_image(user_image_path):
   # Gaussian blur to smooth out pixels
   diff_gray_blur = cv2.GaussianBlur(diff_gray, (5, 5), 0)
 
-  # Find threshold to convert to binary image using Otsu's method
+  # Find threshold to convert to binary image using Otsu's meth od
   ret, img_tresh = cv2.threshold(diff_gray_blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
   # Find contours
@@ -94,17 +94,6 @@ def process_image(user_image_path):
     os.makedirs('output')
 
   # Iterer sur chaque contour
-  for i in validcontours:
-    x, y, w, h = cv2.boundingRect(arr_cnt[i])
-    cv2.rectangle(img_withrectangle, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-    # Crop image
-    crop_img = img_example[y:y + h, x:x + w]
-
-    # Sauvegarder l'image
-    cv2.imwrite("output/crop_" + str(i) + ".jpg", crop_img)
-
-  # Prepare data to return
   bricks_data = []
   for i in validcontours:
     x, y, w, h = cv2.boundingRect(arr_cnt[i])
@@ -116,9 +105,23 @@ def process_image(user_image_path):
       "image_path": f"http://127.0.0.1:5000/output/{unique_filename}"
     }
     bricks_data.append(brick_info)
+    cv2.rectangle(img_withrectangle, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+    # Crop image
+    crop_img = img_example[y:y + h, x:x + w]
+
+    # Force the image to be a square, fill the rest with white
+    # TODO : Fill the rest of the image with an average color of the image excluding the Lego brick
+    if w > h:
+      # Add padding to the top and bottom
+      pad = int((w - h) / 2)
+      crop_img = cv2.copyMakeBorder(crop_img, pad, pad, 0, 0, cv2.BORDER_CONSTANT, value=[255, 255, 255])
+    else:
+      # Add padding to the left and right
+      pad = int((h - w) / 2)
+      crop_img = cv2.copyMakeBorder(crop_img, 0, 0, pad, pad, cv2.BORDER_CONSTANT, value=[255, 255, 255])
 
     # Save the cropped image with the unique filename
-    crop_img = img_example[y:y + h, x:x + w]
     cv2.imwrite(f"output/{unique_filename}", crop_img)
 
   return bricks_data
