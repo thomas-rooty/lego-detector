@@ -110,7 +110,7 @@ def process_image(user_image_path):
   bricks_data = []
   for i in validcontours:
     x, y, w, h = cv2.boundingRect(arr_cnt[i])
-    unique_filename = f"crop_{i}_{uuid.uuid4()}.jpg"
+    unique_filename = f"brick_{i}_{uuid.uuid4()}.jpg"
     brick_info = {
       "id": i,
       "position": {"x": x, "y": y},
@@ -125,7 +125,6 @@ def process_image(user_image_path):
 
     # Assuming 'img' is your image
     avg_color = average_dark_color(crop_img)
-    print(avg_color)
 
     # Force the image to be a square, fill the rest with 25, 25, 25
     if w > h:
