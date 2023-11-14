@@ -1,5 +1,5 @@
 matplotlib
-opencv-python
+opencv-python-headless
 numpy
 Flask
 tensorflow
