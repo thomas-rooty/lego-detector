@@ -76,19 +76,21 @@ Access processed images by navigating to /output/<filename>.
  
 ## OpenCV steps
 
-#### Grayscale
+Note : We set a black background as a default starting point and we tell the user to take a picture of his bricks on a black mat to easily make the difference between bricks and background.
+
+#### 1. Grayscale
 ![img_1.png](img_1.png)
 
-#### Diff between background and image + Gaussian blur to smooth out sharp edges
+#### 2. Diff between background and image + Gaussian blur to smooth out sharp edges
 ![img_2.png](img_2.png)
 
-#### Otsu threshold
+#### 3. Otsu threshold
 ![img_3.png](img_3.png)
 
-#### Find and draw contours
+#### 4. Find and draw contours
 ![img_4.png](img_4.png)
 
-### Bounding boxes
+#### 5. Bounding boxes
 ![img_5.png](img_5.png)
 
 ### Contributing
