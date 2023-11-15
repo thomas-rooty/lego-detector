@@ -74,6 +74,23 @@ Access processed images by navigating to /output/<filename>.
 - POST /guess_lego: Accepts URLs of Lego brick images and returns their guessed types.
 - GET /output/<filename>: Retrieves a processed image.
  
+## OpenCV steps
+
+#### Grayscale
+![img_1.png](img_1.png)
+
+#### Diff between background and image + Gaussian blur to smooth out sharp edges
+![img_2.png](img_2.png)
+
+#### Otsu threshold
+![img_3.png](img_3.png)
+
+#### Find and draw contours
+![img_4.png](img_4.png)
+
+### Bounding boxes
+![img_5.png](img_5.png)
+
 ### Contributing
 We welcome contributions to improve the Lego Detector API! Whether it's bug fixes, feature enhancements, or documentation improvements, your help is valuable.
 
