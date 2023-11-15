@@ -78,6 +78,8 @@ Access processed images by navigating to /output/<filename>.
 
 Note : We set a black background as a default starting point and we tell the user to take a picture of his bricks on a black mat to easily make the difference between bricks and background.
 
+Examples may be white ! But the real AI uses a black background, there's no negative filtering here.
+
 #### 1. Grayscale
 ![img_1.png](img_1.png)
 
